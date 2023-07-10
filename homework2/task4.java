@@ -1,5 +1,6 @@
 package homework2;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -9,13 +10,24 @@ import java.util.Scanner;
  * что пустые строки вводить нельзя.
  */
 public class task4 {
-
     public static void main(String[] args) {
-        inputString();
+        try {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Input something: ");
+            isNotEmptyInput2(scan);
+        } catch (IOException e) {
+            System.out.println("You have a input mistake");
+        }
     }
 
-    static void inputString(){
-        Scanner scan = new Scanner(System.in);
-        
+    static void isNotEmptyInput2(Scanner iScanner) throws IOException {
+        String str = iScanner.nextLine();
+        if (!str.isEmpty()) {
+            System.out.println("Its OK");
+            iScanner.close();
+        } else {
+            throw new RuntimeException("Blank strings cannot be entered");
+        }
+
     }
 }
