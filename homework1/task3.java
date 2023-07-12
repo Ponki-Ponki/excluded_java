@@ -16,8 +16,8 @@ public class task3 {
      * которое пользователь может увидеть - RuntimeException, т.е. ваше.
      */
     public static void main(String[] args) {
-        Integer[] a = createArray(9); // Для вывода ошибки
-        // Integer[] a = createArray(10);
+        // Integer[] a = createArray(9); // Для вывода ошибки
+        Integer[] a = createArray(10);
         printArr(a);
         Integer[] b = createArray(10);
         printArr(b);
@@ -37,7 +37,7 @@ public class task3 {
     static Integer[] createArray(int l) {
         Integer[] result = new Integer[l];
         for (int i = 0; i < result.length; i++) {
-            result[i] = random.nextInt(9)+1;
+            result[i] = random.nextInt(9) + 1;
         }
         return result;
     }
@@ -47,6 +47,8 @@ public class task3 {
             throw new RuntimeException("Массивы не равны по длине");
         Integer[] result = new Integer[a.length];
         for (int i = 0; i < b.length; i++) {
+            if (b[i] == 0)
+                throw new RuntimeException("Произошло деление на ноль. ОШИБКА!");
             result[i] = a[i] / b[i];
         }
         return result;

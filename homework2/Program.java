@@ -1,6 +1,5 @@
 package homework2;
-import java.io.EOFException;
-import java.io.IOException;
+
 import java.util.Random;
 
 public class Program {
@@ -24,26 +23,22 @@ public class Program {
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            System.out.println("Итерация " + (i+1));
+            System.out.println("Итерация " + (i + 1));
             processArray();
         }
     }
 
     public static void processArray() {
         // запуск генерации и обработка исключений
-        try{
+        try {
             System.out.printf("Сумма всех элементов массива: %d", processArrayInternal(generateArray()));
-        }
-        catch (MyArrayDataException e){
+        } catch (MyArrayDataException e) {
             System.out.printf("%s \nЭлемент под индексом [%d][%d]\n", e.getMessage(), e.getX(), e.getY());
-        }
-        catch (MyArraySizeException e){
+        } catch (MyArraySizeException e) {
             System.out.printf("%s \nТребуется ввести массив 4х4, получили %d x %d", e.getMessage(), e.getX(), e.getY());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-        finally{
+        } finally {
             System.out.println();
             System.out.println("Завершение обработки ---------");
         }
@@ -67,9 +62,9 @@ public class Program {
         return arr;
     }
 
-    public static int processArrayInternal(String[][] arr) throws MyArrayDataException, MyArraySizeException{
-        if (arr.length != 4 || arr[0].length != 4){
-            throw new MyArraySizeException("Некорректный размер массива ", arr.length, arr[0].length); 
+    public static int processArrayInternal(String[][] arr) throws MyArrayDataException, MyArraySizeException {
+        if (arr.length != 4 || arr[0].length != 4) {
+            throw new MyArraySizeException("Некорректный размер массива ", arr.length, arr[0].length);
         }
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -80,13 +75,12 @@ public class Program {
         return sum;
     }
 
-    private static int parseElement(String stroka, int i, int j) throws MyArrayDataException{
-        try{
+    private static int parseElement(String stroka, int i, int j) throws MyArrayDataException {
+        try {
             // throw new RuntimeException();
             // throw new Exception();
             return Integer.parseInt(stroka);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new MyArrayDataException("Некорректный формат данных ", i, j);
         }
     }
